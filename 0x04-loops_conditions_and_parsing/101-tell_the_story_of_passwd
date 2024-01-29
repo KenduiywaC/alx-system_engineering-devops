@@ -4,11 +4,17 @@
 # Path to the file
 file="/etc/passwd"
 
-# Using a while loop to read the file line by line
-while IFS=: read -r username _ uid _ _ home _; do
-   
-echo "Username: $username"
-echo "User ID: $uid"
-echo "Home directory: $home"
-    
+# While loop that will read the file line by line
+while IFS=: read -r username _ uid gid info home shell; do
+password=$(grep -E "^$username:" /etc/shadow | cut -d: -f2)
+
+# Checks if password is empty or not found
+if [ -z "$password" ]; then
+password="not available"
+fi
+
+echo "The user $username is part of the $gid gang,"
+echo "lives in $home and rides $shell."
+echo "$uid's place is protected by the passcode $password, more info about the user here: $info"
+echo
 done < "$file"
