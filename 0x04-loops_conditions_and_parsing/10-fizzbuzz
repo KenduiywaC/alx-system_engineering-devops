@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
+#This bash script displays numbers from 1 to 100
 
 # Loop through numbers from 1 to 100
-for ((i=1; i<=100; i++))
-do
-if ((i % 3 == 0)) && ((i % 5 == 0))
-then
+for ((i = 1; i <= 100; i++)); do
+# Check if the number is a multiple of both 3 and 5 (FizzBuzz)
+if ((i % 3 == 0)) && ((i % 5 == 0)); then
 echo "FizzBuzz"
-elif ((i % 3 == 0))
-then
+# Checks if the number is a multiple of 3 (Fizz)
+elif ((i % 3 == 0)); then
 echo "Fizz"
-elif ((i % 5 == 0))
-then
+# Checks if the number is a multiple of 5 (Buzz)
+elif ((i % 5 == 0)); then
 echo "Buzz"
+# Otherwise, print the number 
 else
-echo $i
+echo "$i"
 fi
 done
